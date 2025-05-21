@@ -26,7 +26,7 @@ def loadCookies(driver):
             except Exception as e:
                 print(f"Could not add cookie: {cookie['name']}, Error: {e}")
 
-        print("✅ Cookies loaded successfully!")
+        print("Cookies loaded successfully!")
         driver.refresh()
         time.sleep(5)
 
@@ -42,7 +42,7 @@ def playMusic(account):
     time.sleep(5)
 
     try:
-        # ✅ Accept cookie popup if present
+        #Accept cookie popup if present
         try:
             accept_button = WebDriverWait(driver, 3).until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Accept')]"))
@@ -53,18 +53,18 @@ def playMusic(account):
         except Exception:
             print("✅ No cookie popup.")
 
-        # ✅ Ensure we are logged in
+        #Ensure we are logged in
         if "login" in driver.current_url:
             print("❌ Not logged in. Check cookies or login manually.")
             driver.quit()
             return
 
-        # ✅ Wait for the play button to be clickable
+        #Wait for the play button to be clickable
         play_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Play']"))
         )
 
-        # ✅ Scroll into view and click
+        #Scroll into view and click
         driver.execute_script("arguments[0].scrollIntoView();", play_button)
         time.sleep(1)
 
@@ -76,10 +76,10 @@ def playMusic(account):
 
         print(f"✅ Playing song for account: {account['username']}")
 
-        # ✅ Wait and check if playback starts
+        #Wait and check if playback starts
         time.sleep(5)
 
-        # ✅ Check if playback is happening
+        #Check if playback is happening
         try:
             playing_icon = driver.find_element(By.XPATH, "//button[@aria-label='Pause']")
             print("🎵 Song is playing successfully!")
